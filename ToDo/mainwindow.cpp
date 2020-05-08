@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "task.h"
+#include "taskpopup.h"
 #include <QTime>
 #include <QStyleFactory>
 
@@ -10,8 +11,10 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    qApp->setStyle(QStyleFactory::create("Fusion"));
+    setWindowIcon(QIcon("todo.ico")); //This doesn't work
 
+    //Dark mode stylesheet, woul dlike for this to be an option and have other themes
+    qApp->setStyle(QStyleFactory::create("Fusion"));
     QPalette darkPalette;
     darkPalette.setColor(QPalette::Window, QColor(53,53,53));
     darkPalette.setColor(QPalette::WindowText, Qt::white);
@@ -24,14 +27,12 @@ MainWindow::MainWindow(QWidget *parent)
     darkPalette.setColor(QPalette::ButtonText, Qt::white);
     darkPalette.setColor(QPalette::BrightText, Qt::red);
     darkPalette.setColor(QPalette::Link, QColor(42, 130, 218));
-
     darkPalette.setColor(QPalette::Highlight, QColor(42, 130, 218));
     darkPalette.setColor(QPalette::HighlightedText, Qt::black);
-
     qApp->setPalette(darkPalette);
-
     qApp->setStyleSheet("QToolTip { color: #ffffff; background-color: #2a82da; border: 1px solid white; }");
 
+    // Custom Slot connectors
     QObject::connect(ui->tableWidget, SIGNAL(cellChanged(int, int)), this, SLOT(task_checked(int, int)));
     QObject::connect(ui->tableWidget_2, SIGNAL(cellChanged(int, int)), this, SLOT(task_checked_2(int, int)));
     QObject::connect(ui->tableWidget_3, SIGNAL(cellChanged(int, int)), this, SLOT(task_checked_3(int, int)));
@@ -143,8 +144,10 @@ void MainWindow::on_lineEdit_3_returnPressed()
     result = t.MakeTask(obj, table);
 }
 
-// EDIT DAILY
-void MainWindow::on_tableWidget_2_cellDoubleClicked(int row, int column, QWidget *parent)
+// EDIT DAILY -- OPEN THE POPUP WINDOW
+void MainWindow::on_tableWidget_2_cellDoubleClicked(int row, int column)
 {
-
+    qDebug("Doubley Clickerdoo");
+    TaskPopup tp;
+    tp.exec();
 }

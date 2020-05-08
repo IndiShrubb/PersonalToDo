@@ -2,6 +2,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QVarLengthArray>
+#include <QtWidgets>
+
+namespace Ui {
+class Task;
+}
 
 Task::Task()
 {
@@ -31,8 +36,3 @@ Task::Task()
     }
     else return false;
 }
-
- bool UpdateTaskText(QString *new_string)
- {
-    return false;
- }
