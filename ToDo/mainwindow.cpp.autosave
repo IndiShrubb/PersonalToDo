@@ -71,7 +71,7 @@ void MainWindow::on_pushButton_clicked()
     Task t;
     // SetId is left out because SQLite will aut-increment IDs as items are added to the table
     t.SetType(Task::Type::TODO);
-    t.SetRow(table->rowCount()+1);
+    t.SetRow(table->rowCount());
     t.SetText(obj->text());
     t.UpdateTaskDb();
 

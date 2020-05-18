@@ -1,5 +1,6 @@
 #include "taskpopup.h"
 #include "ui_taskpopup.h"
+#include "task.h"
 
 TaskPopup::TaskPopup(QWidget *parent) :
     QDialog(parent),
@@ -12,6 +13,10 @@ TaskPopup::~TaskPopup()
 {
     delete ui;
 }
+
+//void TaskPopup::Populate(Task *t) {
+//    ui->lineEdit->setText(t->GetText());
+//}
 
 void TaskPopup::on_pushButton_2_clicked()
 {
